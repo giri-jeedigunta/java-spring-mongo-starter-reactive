@@ -1,39 +1,68 @@
 # REST starter App with Java Spring-Boot, Gradle, MongoDB, Webflux
-This is a simple Java Reactive Spring boot starter app with MondoDB and Web Flux. This app have minimal code taking advantage of the spring framework and the reactive dependencies. 
+This is a simple Java Reactive Spring boot starter app with MondoDB and Web Flux. This starter app have minimal code taking advantage of the spring framework and the insanely cool reactive dependencies !!!
 
-## Dependencies
+### Running the App
 ```
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-}
+./gradlew bootRun
 ```
-## Local MongoDB Setup(Mac):
+
+### CRUD - Use cURL to access / test the REST APIs.
+Once the server is running try the following APIs: 
+
+
+GET /contacts/get
+```
+curl http://localhost:8083/contacts/get
+```
+
+GET /contacts/get/{email}
+
+```
+curl http://localhost:8083/conatcts/get/{email}
+```
+
+POST /contacts/add
+
+```
+curl -X POST -d '{"name":"Giri Jeedigunta","email":"giri@yopmail.com"}' -H "Content-Type: application/json" http://localhost:8083/contacts/add -v
+```
+
+POST /contacts/udpate/{id}
+
+```
+curl -X POST -d '{"name":"Giri J","email":"giri@giri.com"}' -H "Content-Type: application/json" http://localhost:8083/contacts/update/5f85c2c8b0abe7062019dd16
+```
+
+POST /contacts/delete/{id}
+
+```
+curl -X POST http://localhost:8083/contacts/delete/5f85c2c8b0abe7062019dd16
+```
+
+### Local MongoDB Setup(Mac):
  
-### Installation: 
+#### Installation: 
 ```
 brew tap mongodb/brew
 brew install mongodb-community@4.4
 ```
 
-### Starting MongoDB
+#### Starting MongoDB
 ```
 brew services start mongodb-community@4.4
 or
 mongod --config /usr/local/etc/mongod.conf --fork
 ```
 
-### Add new DB and collections:
+#### Add new DB and collections:
 Use the below section to create user, db, collections etc,. 
 
-#### Creating DB:
+##### Creating DB:
 ```
 use springContacts
 ```
 
-#### Creating User:
+##### Creating User:
 ```
 use admin;
 
@@ -46,7 +75,7 @@ db.createUser({
 });
 ```
 
-#### Creating New Collections and Sample Data: 
+##### Creating New Collections and Sample Data: 
 ```
 use springContacts;
 
@@ -71,8 +100,8 @@ db.createCollection( "contacts", {
 db.contacts.insert({"name":"Giri Jeedigunta","email":"hello@spring.com"});
 ```
 
-### Adding MongoDB Configuration to Spring Boot Java App: 
-Add all the Mongo config in the following format to ```application.properties```
+#### Adding Configuration to Java App: 
+Add all the MongoDB related config in the following format to ```application.properties```
 ```
 spring.data.mongodb.uri=mongodb://<Add_Your_UserName>:<Your_Password>@localhost:27017/<DB_NAME>?authSource=admin
 
