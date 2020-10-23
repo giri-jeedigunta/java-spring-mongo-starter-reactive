@@ -1,7 +1,15 @@
 # REST starter App with Java Spring-Boot, Gradle, MongoDB, Webflux
 This is a simple Java Reactive Spring boot starter app with MondoDB and Web Flux. This starter app have minimal code taking advantage of the spring framework and the insanely cool reactive dependencies !!!
 
-### Running the App
+### Running the App with Docker
+Use the below to run mongoDB and the app on docker containers.
+```
+docker-compose up
+```
+
+### Running the App without Docker
+For this you will need to set up the MongoDB Locally on your machine(Refer the Local MongoDB Setup section towards the end.). 
+Add the configurations in ```application.properties```  
 ```
 ./gradlew bootRun
 ```
@@ -18,7 +26,7 @@ curl http://localhost:8083/contacts/get
 GET /contacts/get/{email}
 
 ```
-curl http://localhost:8083/conatcts/get/{email}
+curl http://localhost:8083/contacts/get/{email}
 ```
 
 POST /contacts/add
@@ -39,9 +47,10 @@ POST /contacts/delete/{id}
 curl -X POST http://localhost:8083/contacts/delete/5f85c2c8b0abe7062019dd16
 ```
 
-### Local MongoDB Setup(Mac):
- 
-#### Installation: 
+### Local MongoDB Setup(Mac OS):
+Use these steps if you are not familiar with docker.
+  
+#### Easy MongoDB Installation: 
 ```
 brew tap mongodb/brew
 brew install mongodb-community@4.4
@@ -54,13 +63,8 @@ or
 mongod --config /usr/local/etc/mongod.conf --fork
 ```
 
-#### Add new DB and collections:
+#### Add User, DB and collections:
 Use the below section to create user, db, collections etc,. 
-
-##### Creating DB:
-```
-use springContacts
-```
 
 ##### Creating User:
 ```
@@ -75,7 +79,7 @@ db.createUser({
 });
 ```
 
-##### Creating New Collections and Sample Data: 
+##### Creating New Collection: 
 ```
 use springContacts;
 
@@ -95,13 +99,16 @@ db.createCollection( "contacts", {
       }
    } }
 } );
+```
 
-// Insert data:
+#####: Sample Data
+```
 db.contacts.insert({"name":"Giri Jeedigunta","email":"hello@spring.com"});
 ```
 
 #### Adding Configuration to Java App: 
 Add all the MongoDB related config in the following format to ```application.properties```
+
 ```
 spring.data.mongodb.uri=mongodb://<Add_Your_UserName>:<Your_Password>@localhost:27017/<DB_NAME>?authSource=admin
 
