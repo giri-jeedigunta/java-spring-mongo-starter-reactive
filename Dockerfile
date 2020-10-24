@@ -1,10 +1,13 @@
+# Author: Giri Jeedigunta
+# Git: https://github.com/giri-jeedigunta/java-spring-mongo-starter-reactive
+
 FROM openjdk:14-jdk-alpine
 
 WORKDIR /app
 
-ADD build/libs/*.jar ReactiveRESTStarterApp-1.0.jar
+ADD build/libs/*.jar ReactiveRESTfulStarterApp-1.0.jar
 
-EXPOSE 8083
+EXPOSE 4000
 
 ENV JAVA_XMS=-Xms1024m
 ENV JAVA_XMX=-Xmx1024m

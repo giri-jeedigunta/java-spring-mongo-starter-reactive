@@ -1,9 +1,10 @@
-# REST starter App with Java Spring-Boot, Gradle, MongoDB, Webflux
-This is a simple Java Reactive Spring boot starter app with MondoDB and Web Flux. This starter app have minimal code taking advantage of the spring framework and the insanely cool reactive dependencies !!!
+# RESTful API server app with Java Spring Reactive Framework
+A light-weight RESTful API server starter app built with Java Spring Reactive Framework, MongoDB, WebFlux and Gradle. 
 
 ### Running the App with Docker
 Use the below to run mongoDB and the app on docker containers.
 ```
+./gradlew clean build  
 docker-compose up
 ```
 
@@ -11,44 +12,45 @@ docker-compose up
 For this you will need to set up the MongoDB Locally on your machine(Refer the Local MongoDB Setup section towards the end.). 
 Add the configurations in ```application.properties```  
 ```
+./gradlew clean build
 ./gradlew bootRun
 ```
 
-### CRUD - Use cURL to access / test the REST APIs.
+### Try the CRUD - Use cURL to access / test the APIs.
 Once the server is running try the following APIs: 
 
 
-GET /contacts/get
+GET /api/get
 ```
-curl http://localhost:8083/contacts/get
-```
-
-GET /contacts/get/{email}
-
-```
-curl http://localhost:8083/contacts/get/{email}
+curl http://localhost:4000/api/get
 ```
 
-POST /contacts/add
+GET /api/get/{email}
 
 ```
-curl -X POST -d '{"name":"Giri Jeedigunta","email":"giri@yopmail.com"}' -H "Content-Type: application/json" http://localhost:8083/contacts/add -v
+curl http://localhost:4000/api/get/{email}
 ```
 
-POST /contacts/udpate/{id}
+POST /api/add
 
 ```
-curl -X POST -d '{"name":"Giri J","email":"giri@giri.com"}' -H "Content-Type: application/json" http://localhost:8083/contacts/update/5f85c2c8b0abe7062019dd16
+curl -X POST -d '{"name":"Giri Jeedigunta","email":"giri@yopmail.com"}' -H "Content-Type: application/json" http://localhost:4000/api/add -v
 ```
 
-POST /contacts/delete/{id}
+POST /api/udpate/{id}
 
 ```
-curl -X POST http://localhost:8083/contacts/delete/5f85c2c8b0abe7062019dd16
+curl -X POST -d '{"name":"Giri J","email":"giri@giri.com"}' -H "Content-Type: application/json" http://localhost:4000/api/update/5f85c2c8b0abe7062019dd16
+```
+
+POST /api/delete/{id}
+
+```
+curl -X POST http://localhost:4000/api/delete/5f85c2c8b0abe7062019dd16
 ```
 
 ### Local MongoDB Setup(Mac OS):
-Use these steps if you are not familiar with docker.
+If you are not familiar with docker. Follow these steps to setup MongoDB on your machine locally. Here I have instructions for Mac OS. 
   
 #### Easy MongoDB Installation: 
 ```
@@ -74,16 +76,16 @@ db.createUser({
     user: "giri",
     pwd: "spring2020",
     roles:[
-        {role: "dbAdmin", db:"springContacts"}
+        {role: "dbAdmin", db:"springapi"}
     ]
 });
 ```
 
 ##### Creating New Collection: 
 ```
-use springContacts;
+use springapi;
 
-db.createCollection( "contacts", {
+db.createCollection( "api", {
    validator: { $jsonSchema: {
       bsonType: "object",
       required: [ "name" ],
@@ -103,15 +105,15 @@ db.createCollection( "contacts", {
 
 #####: Sample Data
 ```
-db.contacts.insert({"name":"Giri Jeedigunta","email":"hello@spring.com"});
+db.api.insert({"name":"Giri Jeedigunta","email":"hello@spring.com"});
 ```
 
 #### Adding Configuration to Java App: 
-Add all the MongoDB related config in the following format to ```application.properties```
+Add all the MongoDB related config in a simple URI format like below in the ```application.properties``` file. 
 
 ```
 spring.data.mongodb.uri=mongodb://<Add_Your_UserName>:<Your_Password>@localhost:27017/<DB_NAME>?authSource=admin
 
 // Example: 
-spring.data.mongodb.uri=mongodb://giri:spring2020@localhost:27017/springContacts?authSource=admin
+spring.data.mongodb.uri=mongodb://giri:spring2020@localhost:27017/springapi?authSource=admin
 ```
