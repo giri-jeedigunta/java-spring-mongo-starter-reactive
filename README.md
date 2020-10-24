@@ -103,7 +103,7 @@ db.createCollection( "api", {
 } );
 ```
 
-#####: Sample Data
+##### Sample Data
 ```
 db.api.insert({"name":"Giri Jeedigunta","email":"hello@spring.com"});
 ```
