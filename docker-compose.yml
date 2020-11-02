@@ -8,11 +8,15 @@ services:
     image: "mongo"
     ports:
       - "27017:27017"
+    expose:
+      - 27017
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
   app:
     build: .
     ports:
       - "4000:4000"
+    expose:
+      - 4000
     depends_on:
       - db

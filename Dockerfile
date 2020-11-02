@@ -12,4 +12,4 @@ EXPOSE 4000
 ENV JAVA_XMS=-Xms1024m
 ENV JAVA_XMX=-Xmx1024m
 
-ENTRYPOINT java -Djava.security.egd=file:/dev/urandom $JAVA_XMS $JAVA_XMX -jar ReactiveRESTStarterApp-1.0.jar
+ENTRYPOINT java -Djava.security.egd=file:/dev/urandom $JAVA_XMS $JAVA_XMX -jar ReactiveRESTfulStarterApp-1.0.jar
