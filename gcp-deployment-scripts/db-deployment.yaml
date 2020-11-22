@@ -1,0 +1,64 @@
+apiVersion: v1
+data:
+  createuser.sh: |-
+    mongo <<EOF
+    use api
+    db.createUser({
+        user: "giri",
+        pwd: "spring2020",
+        roles:[
+            {role: "dbAdmin", db:"api"}
+        ]
+    })
+    EOF
+kind: ConfigMap
+metadata:
+  name: mongo-initdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    name: db-deployment
+    app: rest-app-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: db-pod
+      app: rest-app-java
+  template:
+    metadata:
+      name: db-pod
+      labels:
+        name: db-pod
+        app: rest-app-java
+    spec:
+      containers:
+        - image: mongo:3.2
+          name: db
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mongo-initdb
+          configMap:
+            name: mongo-initdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  labels:
+    name: db-service
+    app: rest-app-java
+spec:
+  selector:
+    name: db-pod
+    app: rest-app-java
+  ports:
+    - targetPort: 27017
+      port: 27017
