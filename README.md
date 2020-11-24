@@ -1,49 +1,52 @@
 # RESTful API server app with Java Spring Reactive Framework
 A light-weight RESTful API server starter app built with Java Spring Reactive Framework, MongoDB, WebFlux and Gradle. 
 
-### Running the App with Docker
-Use the below to run mongoDB and the app on docker containers.
+### Running everything on Docker:
+Using ```docker-compose``` run both mongoDB and the app as docker containers.
 ```
 ./gradlew clean build  
 docker-compose up
 ```
 
-### Running the App without Docker
+### Not familiar with Docker? No problem run it locally on your machine: 
 For this you will need to set up the MongoDB Locally on your machine(Refer the Local MongoDB Setup section towards the end.). 
-Add the configurations in ```application.properties```  
+Add the configurations in ```application.properties``` and run the below or use your fav IDE:  
 ```
 ./gradlew clean build
 ./gradlew bootRun
 ```
 
-### Try the CRUD - Use cURL to access / test the APIs.
-Once the server is running try the following APIs: 
+### Try the CRUD. Test the endPoints / REST APIs.
+Once the server is running try to access the below APIs using ```cURL``` or ```POSTMAN``` or any tool that you are already using.   
 
-
-GET /api/get
-```
-curl http://localhost:4000/api/get
-```
-
-GET /api/get/{email}
-
-```
-curl http://localhost:4000/api/get/{email}
-```
-
-POST /api/add
+CREATE: 
+```POST``` /api/add
 
 ```
 curl -X POST -d '{"name":"Giri Jeedigunta","email":"giri@yopmail.com"}' -H "Content-Type: application/json" http://localhost:4000/api/add -v
 ```
 
-POST /api/udpate/{id}
+READ: 
+```GET``` /api/get
+```
+curl http://localhost:4000/api/get
+```
+
+```GET``` /api/get/{email}
+
+```
+curl http://localhost:4000/api/get/{email}
+```
+
+UPDATE: 
+```POST``` /api/udpate/{id}
 
 ```
 curl -X POST -d '{"name":"Giri J","email":"giri@giri.com"}' -H "Content-Type: application/json" http://localhost:4000/api/update/5f85c2c8b0abe7062019dd16
 ```
 
-POST /api/delete/{id}
+DELETE: 
+```POST``` /api/delete/{id}
 
 ```
 curl -X POST http://localhost:4000/api/delete/5f85c2c8b0abe7062019dd16

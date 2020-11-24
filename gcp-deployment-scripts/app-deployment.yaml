@@ -1,3 +1,7 @@
+#
+# Author: Giri Jeedigunta
+# Git: https://github.com/giri-jeedigunta/java-spring-mongo-starter-reactive
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:

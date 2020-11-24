@@ -1,3 +1,7 @@
+#
+# Author: Giri Jeedigunta
+# Git: https://github.com/giri-jeedigunta/java-spring-mongo-starter-reactive
+#
 apiVersion: v1
 data:
   createuser.sh: |-
