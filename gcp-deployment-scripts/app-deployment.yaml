@@ -35,8 +35,7 @@ spec:
   selector:
     name: app-pod
     app: rest-app-java
-  type: NodePort
+  type: LoadBalancer
   ports:
     - targetPort: 4000
       port: 4000
-      nodePort: 30004
