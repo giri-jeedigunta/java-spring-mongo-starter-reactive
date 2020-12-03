@@ -1,6 +1,8 @@
 # RESTful API server app with Java Spring Reactive Framework
 A light-weight RESTful API server starter app built with Java Spring Reactive Framework, MongoDB, WebFlux and Gradle. 
 
+##Features
+
 ### Running everything on Docker:
 Using ```docker-compose``` run both mongoDB and the app as docker containers.
 ```
