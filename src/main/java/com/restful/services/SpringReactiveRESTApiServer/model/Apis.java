@@ -1,4 +1,4 @@
-package com.restful.services.springReactiveRESTApp.model;
+package com.restful.services.SpringReactiveRESTApiServer.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package com.restful.services.springReactiveRESTApp;
+package com.restful.services.SpringReactiveRESTApiServer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

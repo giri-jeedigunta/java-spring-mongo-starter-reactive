@@ -6,7 +6,6 @@ A light-weight RESTful API server starter app built with Java Spring Reactive Fr
 ### Running everything on Docker:
 Using ```docker-compose``` run both mongoDB and the app as docker containers.
 ```
-./gradlew clean build  
 docker-compose up
 ```
 

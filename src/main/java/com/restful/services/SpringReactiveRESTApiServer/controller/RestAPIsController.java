@@ -1,7 +1,7 @@
-package com.restful.services.springReactiveRESTApp.controller;
+package com.restful.services.SpringReactiveRESTApiServer.controller;
 
-import com.restful.services.springReactiveRESTApp.model.Apis;
-import com.restful.services.springReactiveRESTApp.repositories.ApisRepository;
+import com.restful.services.SpringReactiveRESTApiServer.model.Apis;
+import com.restful.services.SpringReactiveRESTApiServer.repositories.ApisRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
