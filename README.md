@@ -2,6 +2,10 @@
 A light-weight RESTful API server starter app built with Java Spring Reactive Framework, MongoDB, WebFlux and Gradle. 
 
 ## Features
+- Containerised App with Docker 
+- NoSQL DB - MongoDB
+- Metrics exposed. Easy intergration with prometheus and Grafana. 
+- SQL Version - Coming soon. 
 
 ### Running everything on Docker:
 Using ```docker-compose``` run both mongoDB and the app as docker containers.
