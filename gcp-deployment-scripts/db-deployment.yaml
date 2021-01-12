@@ -17,11 +17,13 @@ data:
     EOF
 kind: ConfigMap
 metadata:
+  namespace: ns-dev-beapps
   name: mongo-initdb
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ns-dev-beapps
   name: db-deployment
   labels:
     name: db-deployment
@@ -34,6 +36,7 @@ spec:
       app: rest-app-java
   template:
     metadata:
+      namespace: ns-dev-beapps
       name: db-pod
       labels:
         name: db-pod
@@ -55,6 +58,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: ns-dev-beapps
   name: db
   labels:
     name: db-service

@@ -5,6 +5,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ns-dev-beapps
   name: app-deployment
   labels:
     name: app-deployment
@@ -17,6 +18,7 @@ spec:
       app: rest-app-java
   template:
     metadata:
+      namespace: ns-dev-beapps
       name: app-pod
       labels:
         name: app-pod
@@ -31,6 +33,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: ns-dev-beapps
   name: app-service
   labels:
     name: app-service
